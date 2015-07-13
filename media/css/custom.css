@@ -1,0 +1,318 @@
+#container-main {
+	padding-top: 60px;
+	padding-bottom: 40px;
+}
+
+p { }
+
+html, body {
+	height: 100%;
+	/* The html and body elements cannot have any padding or margin. */
+}
+
+/* Wrapper for page content to push down footer */
+#wrap {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	/* Negative indent footer by it's height */
+	margin: 0 auto -60px;
+}
+
+#wrapbackgroundimg {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	/* Negative indent footer by it's height */
+	margin: 0 auto -60px;
+	background-image: url(/media/img/dining-retouched-small.jpg);
+}
+
+/* Set the fixed height of the footer here */
+#push, #footer {
+	height: 60px;
+}
+
+/* Lastly, apply responsive CSS fixes as necessary */
+@media (max-width: 767px) {
+	#footer {
+	  margin-left: -20px;
+	  margin-right: -20px;
+	  padding-left: 20px;
+	  padding-right: 20px;
+	}
+}
+
+#wrapper-narrow {
+	width: 700px;
+}
+
+.button-spacer {
+	padding-top: 30px;
+}
+
+.footer {
+	padding: 30px;
+	background-color: #ffffff;
+}
+
+.hero-unit h1 {
+	padding-bottom: 40px;
+}
+
+.hero-unit {
+}
+
+.hero-unit p {
+}
+
+.license {
+}
+
+.btn-xlarge {
+}
+
+.hero-engage {
+}
+
+.hero-engage > .btn-xlarge {
+}
+
+.box-link {
+}
+
+.footer {
+}
+
+textarea {
+}
+
+.helptext {
+}
+
+.navbar {
+}
+
+p.notice {
+	color: grey;
+	font-style: italic;
+}
+
+.res-detail {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.res-modify-btn {
+	width: 400px;
+	padding-top:20px;
+	padding-bottom: 20px;
+	margin: auto;
+	text-align: center;
+}
+
+.res-status-btn {
+	cursor: default;
+}
+
+.timeline-tags {
+	font-style: italic;
+	font-size: 120%;
+}
+
+.new-reservation {
+	padding-top: 30px;
+}
+
+.btn-inline {
+	display: inline;
+}
+
+div.ui-datepicker{
+ font-size:10px;
+}
+
+.btn-red {
+	color: red;
+	border: 1px;
+}
+
+.btn-red:hover {
+	text-decoration: none;
+	color: red;
+}
+
+.form-help-text {
+	font-style: italic;
+	font-size: 90%;
+}
+
+.field-wrapper {
+	width: 700px;
+	margin-bottom: 30px;
+	padding: 20px;
+}
+
+textarea {
+	width: 700px;
+	height: 120px;
+}
+
+.float-right {
+	float:right;
+}
+
+img.profile-page-img {
+	width: 300px;
+	height: 200px;
+}
+
+.user-links {
+	padding-top: 30px;
+	padding-bottom: 30px;
+
+}
+
+.user-link {
+	padding-right: 20px;
+}
+
+.icon-spacer {
+	padding-right: 10px;
+}
+
+/*ul.error-list ~ .form-field-body {
+	background-color: red;
+}
+*/
+.survey-description {
+	padding-bottom: 1px;
+	padding-top: 1px;
+	text-align: center;
+
+}
+
+.survey-right {
+	padding-bottom: 1px;
+	padding-top: 1px;
+	text-align: left;
+
+}
+
+.question-required {
+	background: #819FF7;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+}
+
+h3.collapsible:hover {
+	cursor: hand; 
+	cursor: pointer; ;
+}
+
+.collapse-open span {
+    display:block;
+    float:left;
+    padding:20px; 
+}
+
+.accordion-open span, .collapse-open span {
+    background:url(/media/img/collapse.png) center center no-repeat; }
+
+.accordion-close span, .collapse-close span {
+    display:block;
+    float:left;
+    background:url(/media/img/expand.png) center center no-repeat;
+    padding:20px; 
+}
+
+.submit-button {
+	padding: 20px;
+}
+
+.submit-button > input {
+	font-size: 100%;
+	padding: 10px;
+}
+
+.contenedor-buttons {
+	text-align: right;
+}
+
+
+.asterix {
+	color: red;
+	font-size: 200%;
+	vertical-align: middle
+}
+
+.label-inline {
+	display: inline;
+}
+
+#intro {
+	width: 700px;
+	margin: auto;
+}
+
+label {
+	display: inline;
+	padding-right: 12px;
+}
+
+#id_comments, #id_conditions {
+	height: 50px;
+}
+
+ol.survey-questions {
+	margin-left: 0px;
+}
+
+.q-item {
+	margin-left: 60px;
+}
+
+.paginas-encuesta {	
+	position: fixed;
+    top: 30%;
+    left: 34%;
+    width:60em;
+    height:40em;
+    margin-top: -9em; /*set to a negative number 1/2 of your height*/
+    margin-left: -15em; /*set to a negative number 1/2 of your width*/
+    border: 1px solid #ccc;
+    background-color: #f3f3f3;
+	overflow-y: auto;
+}
+
+.login-encuesta {	
+	position: fixed;
+    top: 30%;
+    left: 50%;
+    width:30em;
+    height:17em;
+    margin-top: -9em; /*set to a negative number 1/2 of your height*/
+    margin-left: -15em; /*set to a negative number 1/2 of your width*/
+    border: 1px solid #ccc;
+    background-color: #f3f3f3;
+	overflow-y: auto;
+}
+
+.formularios-encuesta {	
+	position: fixed;
+    top: 30%;
+    left: 45%;
+    width:35em;
+    height:17em;
+    margin-top: -9em; /*set to a negative number 1/2 of your height*/
+    margin-left: -15em; /*set to a negative number 1/2 of your width*/
+    border: 1px solid #ccc;
+    background-color: #f3f3f3;
+	overflow-y: auto;
+}
+
+.porcentaje {
+	text-align: right;
+	color: red;
+}

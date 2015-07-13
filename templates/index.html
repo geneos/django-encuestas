@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %} Gestion de Egresados {% endblock %}
+{% block body %}
+	{% if user.is_authenticated %}
+	<div id="intro">
+	<div>
+		{% if not response_list %}
+			{% if surveys_list %}		
+			  <ul>
+			  	{% if user.is_authenticated %}
+			  		<div class="formularios-encuesta">
+			  		<div class="survey-description">						
+						<b>Formularios disponibles</b><br><br>
+					</div>
+				    {% for survey in surveys_list %}
+				        <li>{{ survey.name }}
+				        		(<a href="/survey/0/{{ survey.id }}/1">nuevo</a>)
+				    {% endfor %}
+				    </div>
+			    {% endif %}
+			  </ul>
+			{% else %}
+			<ul>			
+				<div class="survey-right">
+			   		<p>No hay formularios disponibles para cargar.</p>
+			    </div>
+			</ul>
+			{% endif %}
+		{% endif %}		
+		{% if user.is_authenticated %}   
+  			{% if response_list %}
+    		<div class="formularios-encuesta">
+    			<div class="survey-description">						
+					<b>Formularios en proceso de carga</b><br><br>
+				</div>
+    		<ul>
+    	  		{% for response in response_list %}
+  	        		<li>{{ response.survey.name }} - {{ response.interviewee.first_name }} {{ response.interviewee.last_name }}
+  	            	<a href="/survey/{{ response.id }}/{{ response.survey.id }}/{{ response.category.name }}/">(continuar carga)</a>
+  	    		{% endfor %}
+    		</ul>
+    		</div>  		
+  			{% endif %}
+		{% endif %}
+	</div>
+	</div>	
+	{% endif %}	
+		{% if not user.is_authenticated %}
+		<div class="login-encuesta">
+		<div class="survey-description">	
+				<br><br><br><br>			
+				<b>No está autenticado.</b><br>
+		</div>
+		</div>
+		{% endif %}	
+{% endblock %}

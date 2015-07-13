@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load survey_extras %}
+
+{% block wrapper %}
+<div class="survey-description">
+	<b>{{survey.name|title}}</b> <br>
+	{{survey.description|safe}}
+</div>
+{% endblock %}
+{% block body %} 
+<div class="paginas-encuesta">
+	{% for category in category_items %}
+	<form action="/survey/{{ response_id }}/{{ survey.id }}/{{ category.name }}/" method="post">{% csrf_token %}
+		<ol class="survey-questions">
+			<div class="survey-description">				
+				<b>Pagina {{category|title}}: {{category.titulo}}</b><br><br>
+			</div>			
+			<div class="category-container">
+			{% for field in response_form  %}
+				{% if field.field.widget.attrs.category == category.name %}
+						<li class="q-item" value="{% counter %}">
+						{% if field.field.required %} 
+						<div class="field-wrapper question-required"> 
+							{{ field.errors }}
+							<span class="asterix"> * </span><label class="label-inline">{{ field.label }}</label>
+						{% else %} 
+						<div class="field-wrapper"> 
+							{{ field.errors }}
+							<label class="label-inline">{{ field.label }}</label>
+						{% endif %}
+							<tr><td>
+							<span class="form-help-text">{{ field.help_text}}</span>
+							<div class="form-field-body">
+								{{ field }}
+							</div>
+							</td></tr>
+						</div>
+						</li>
+				{% endif %}
+			{% endfor %}
+			</div>
+			<div class="contenedor-buttons">
+				<div class="submit-button">				
+				{% if category.name != '1' %}
+					<input type="submit" value="Anterior" name="_anterior">
+				{% endif %}
+				{% if ultima %}				
+					<input type="submit" value="Finalizar" name="_finalizar">				
+				{% else %}
+					<input type="submit" value="Siguiente" name="_siguiente">
+				{% endif %}
+				</div>
+			</div>
+			<div class="porcentaje">
+				<label class="label-inline">Avance en la encuesta: {{ porcentaje }}%.</label>				
+			</div>
+		</ol>
+	</form>
+	{% endfor %}
+</div>
+{% endblock %}
+
+{% block extrajs %}
+	<script src="/media/js/jquery.collapsible.js"></script>	
+	<script type="text/javascript">
+		$(document).ready(function() {
+			//collapsible management
+			$('.collapsible').collapsible({defaultOpen: 'response_metadata'});
+		});
+	</script>
+{% endblock %}
