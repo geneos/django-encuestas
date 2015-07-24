@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import models
-from survey.models import Pregunta, Pagina, Encuesta, Response#, AnswerText, AnswerRadio, AnswerSelect, AnswerInteger, AnswerSelectMultiple
+from survey.models import Question, Category, Survey, Response#, AnswerText, AnswerRadio, AnswerSelect, AnswerInteger, AnswerSelectMultiple
 from django.utils.safestring import mark_safe
 import uuid
 
@@ -35,33 +35,32 @@ class ResponseForm(models.ModelForm):
 				answer_for_questions = Response.objects.filter(interviewee=r.interviewee,survey=r.survey,category=r.category).order_by('question')
 				#answer_for_questions = Response.objects.filter(interviewee=r.interviewee,survey=r.survey,category=p).order_by('question')
 
-			
 		#Inicializo el FORM
 		super(ResponseForm, self).__init__(*args, **kwargs)				
 		#Traigo las preguntas de esa pagina
 		questions = survey.questions().filter(category=p)
 
 		for q in questions.order_by('id'):
-			if q.question_type == Pregunta.TEXT:
+			if q.question_type == Question.TEXT:
 				self.fields["question_%d" % q.pk] = forms.CharField(label=q.text, 
 					widget=forms.Textarea)				
-			elif q.question_type == Pregunta.RADIO:
+			elif q.question_type == Question.RADIO:
 				question_choices = q.get_choices()
 				self.fields["question_%d" % q.pk] = forms.ChoiceField(label=q.text, 
 					widget=forms.RadioSelect(), 
 					choices = question_choices)												
-			elif q.question_type == Pregunta.SELECT:
+			elif q.question_type == Question.SELECT:
 				question_choices = q.get_choices()
 				# add an empty option at the top so that the user has to
 				# explicitly select one of the options
 				question_choices = tuple([('', '-------------')]) + question_choices
 				self.fields["question_%d" % q.pk] = forms.ChoiceField(label=q.text, 
 					widget=forms.Select, choices = question_choices)
-			elif q.question_type == Pregunta.SELECT_MULTIPLE:
+			elif q.question_type == Question.SELECT_MULTIPLE:
 				question_choices = q.get_choices()
 				self.fields["question_%d" % q.pk] = forms.MultipleChoiceField(label=q.text, 
 					widget=forms.CheckboxSelectMultiple, choices = question_choices)
-			elif q.question_type == Pregunta.INTEGER:
+			elif q.question_type == Question.INTEGER:
 				self.fields["question_%d" % q.pk] = forms.IntegerField(label=q.text)				
 			
 			# if the field is required, give it a corresponding css class.
@@ -106,23 +105,23 @@ class ResponseForm(models.ModelForm):
 			response.interviewee = user
 
 			q_id = int(field_name.split("_")[1])
-			q = Pregunta.objects.get(pk=q_id)
+			q = Question.objects.get(pk=q_id)
 			#Guardo la question
 			response.question = q
 							
-			if q.question_type == Pregunta.TEXT:
+			if q.question_type == Question.TEXT:
 				response.answertype = 'TEXT'
 				response.answervalue = field_value
-			elif q.question_type == Pregunta.RADIO:
+			elif q.question_type == Question.RADIO:
 				response.answertype = 'RADIO'
 				response.answervalue = field_value
-			elif q.question_type == Pregunta.SELECT:
+			elif q.question_type == Question.SELECT:
 				response.answertype = 'SELECT'
 				response.answervalue = field_value				
-			elif q.question_type == Pregunta.SELECT_MULTIPLE:
+			elif q.question_type == Question.SELECT_MULTIPLE:
 				response.answertype = 'MULTIPLE'
 				response.answervalue = field_value					
-			elif q.question_type == Pregunta.INTEGER:	
+			elif q.question_type == Question.INTEGER:	
 				response.answertype = 'INTEGER'
 				response.answervalue = field_value
 						
@@ -133,23 +132,23 @@ class ResponseForm(models.ModelForm):
 			if responses:
 				for response in responses:
 					q_id = int(field_name.split("_")[1])
-					q = Pregunta.objects.get(pk=q_id)
+					q = Question.objects.get(pk=q_id)
 					#Guardo la question
 					response.question = q
 								
-					if q.question_type == Pregunta.TEXT:
+					if q.question_type == Question.TEXT:
 						response.answertype = 'TEXT'
 						response.answervalue = field_value
-					elif q.question_type == Pregunta.RADIO:
+					elif q.question_type == Question.RADIO:
 						response.answertype = 'RADIO'
 						response.answervalue = field_value
-					elif q.question_type == Pregunta.SELECT:
+					elif q.question_type == Question.SELECT:
 						response.answertype = 'SELECT'
 						response.answervalue = field_value				
-					elif q.question_type == Pregunta.SELECT_MULTIPLE:
+					elif q.question_type == Question.SELECT_MULTIPLE:
 						response.answertype = 'MULTIPLE'
 						response.answervalue = field_value					
-					elif q.question_type == Pregunta.INTEGER:	
+					elif q.question_type == Question.INTEGER:	
 						response.answertype = 'INTEGER'
 						response.answervalue = field_value
 								

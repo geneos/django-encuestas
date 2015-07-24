@@ -9,12 +9,44 @@
 {% endblock %}
 
 {% block body %}
-	{% if user.is_authenticated %}		
+	{% if user.is_authenticated %}	
+		{% if egresados_list %}	
+			<form action="" method="post">{% csrf_token %}
+			<div>
+					<div class="formularios-egresados">
+						<div class="survey-description">
+							<div class="mensaje">
+							{{ mensaje }}			
+							</div>			
+							<b>Seleccione un egresado para cargar su encuesta</b>						
+							<select name="egresado_id" size="15">
+								{% for egresado in egresados_list %}
+				    				<option value="{{ egresado.id }}">{{ egresado.first_name }} {{ egresado.last_name }}</option>
+								{% endfor %}
+							</select><br>
+							<b>Seleccione una encuesta a completar</b><br>					
+							<select name="survey_id">
+								{% for survey in surveys_list %}
+				    				<option value="{{ survey.id }}">{{ survey.name }}</option>
+								{% endfor %}
+							</select><br>
+						</div>						
+						<div class="submit-button">				
+							<input type="submit" value="Cargar Encuesta" name="_encuesta">
+						</div>
+					</div>
+			</div>
+			</form>
+		{% else %}	
 			{% if not response_list %}				
 				{% if surveys_list %}					
 				  <ul>
 				  	{% if user.is_authenticated %}
-					    <div class="formularios-encuesta">				    
+					    <div class="formularios-encuesta">		
+					    <div class="survey-description">					
+							<b>Formularios disponibles para completar</b><br><br>
+						</div>
+
 					    {% for survey in surveys_list %}
 					        <li>{{ survey.name }}
 					        		(<a href="/survey/0/{{ survey.id }}/1">nuevo</a>)
@@ -38,13 +70,13 @@
 	    		<ul>
 	    	  		{% for response in response_list %}
 	  	        		<li>{{ response.survey.name }} - {{ response.interviewee.first_name }} {{ response.interviewee.last_name }}
-	  	            	<a href="/survey/{{ response.id }}/{{ response.survey.id }}/{{ response.category.name }}/">(continuar carga)</a>
+	  	            	<a href="/survey/{{ response.id }}/{{ response.survey.id }}/{{ response.category.name }}/0/{{ response.interviewee.id }}">(continuar carga)</a>
 	  	    		{% endfor %}
 	    		</ul>
 	    		</div>	  			
 	  			{% endif %}
 			{% endif %}		
-	
+		{% endif %}	
 	{% endif %}
 	{% if not user.is_authenticated %}
 		<div class="login-encuesta">				

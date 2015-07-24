@@ -2,55 +2,84 @@
 {% block title %} Gestion de Egresados {% endblock %}
 {% block body %}
 	{% if user.is_authenticated %}
-	<div id="intro">
-	<div>
-		{% if not response_list %}
-			{% if surveys_list %}		
-			  <ul>
-			  	{% if user.is_authenticated %}
-			  		<div class="formularios-encuesta">
-			  		<div class="survey-description">						
-						<b>Formularios disponibles</b><br><br>
+		<div id="intro">
+		{% if egresados_list %}	
+			<form action="" method="post">{% csrf_token %}
+			<div>
+					<div class="formularios-egresados">
+						<div class="survey-description">
+							<div class="mensaje">
+							{{ mensaje }}			
+							</div>			
+							<b>Seleccione un egresado para cargar su encuesta</b>						
+							<select name="egresado_id" size="15">
+								{% for egresado in egresados_list %}
+				    				<option value="{{ egresado.id }}">{{ egresado.first_name }} {{ egresado.last_name }}</option>
+								{% endfor %}
+							</select><br>
+							<b>Seleccione una encuesta a completar</b><br>					
+							<select name="survey_id">
+								{% for survey in surveys_list %}
+				    				<option value="{{ survey.id }}">{{ survey.name }}</option>
+								{% endfor %}
+							</select><br>
+						</div>						
+						<div class="submit-button">				
+							<input type="submit" value="Cargar Encuesta" name="_encuesta">
+						</div>
 					</div>
-				    {% for survey in surveys_list %}
-				        <li>{{ survey.name }}
-				        		(<a href="/survey/0/{{ survey.id }}/1">nuevo</a>)
-				    {% endfor %}
-				    </div>
-			    {% endif %}
-			  </ul>
-			{% else %}
-			<ul>			
-				<div class="survey-right">
-			   		<p>No hay formularios disponibles para cargar.</p>
-			    </div>
-			</ul>
-			{% endif %}
-		{% endif %}		
-		{% if user.is_authenticated %}   
-  			{% if response_list %}
-    		<div class="formularios-encuesta">
-    			<div class="survey-description">						
-					<b>Formularios en proceso de carga</b><br><br>
-				</div>
-    		<ul>
-    	  		{% for response in response_list %}
-  	        		<li>{{ response.survey.name }} - {{ response.interviewee.first_name }} {{ response.interviewee.last_name }}
-  	            	<a href="/survey/{{ response.id }}/{{ response.survey.id }}/{{ response.category.name }}/">(continuar carga)</a>
-  	    		{% endfor %}
-    		</ul>
-    		</div>  		
-  			{% endif %}
+			</div>
+			</form>
+		{% else %}
+			<div>	
+				{% if not response_list %}
+					{% if surveys_list %}		
+					  <ul>
+					  	{% if user.is_authenticated %}
+					  		<div class="formularios-encuesta">
+					  		<div class="survey-description">						
+								<b>Formularios disponibles para completar</b><br><br>					
+						    {% for survey in surveys_list %}
+						        <li>{{ survey.name }}
+						        		(<a href="/survey/0/{{ survey.id }}/1/0/0">nuevo</a>)
+						    {% endfor %}
+						    </div>
+						    </div>
+					    {% endif %}
+					  </ul>
+					{% else %}
+					<ul>			
+						<div class="survey-right">
+					   		<p>No hay formularios disponibles para cargar.</p>
+					    </div>
+					</ul>
+					{% endif %}
+				{% endif %}		
+				{% if user.is_authenticated %}   
+		  			{% if response_list %}
+		    		<div class="formularios-encuesta">
+		    			<div class="survey-description">						
+							<b>Formularios en proceso de carga</b><br><br>
+						</div>
+		    		<ul>
+		    	  		{% for response in response_list %}
+		  	        		<li>{{ response.survey.name }} - {{ response.interviewee.first_name }} {{ response.interviewee.last_name }}
+		  	            	<a href="/survey/{{ response.id }}/{{ response.survey.id }}/{{ response.category.name }}/0/{{ response.interviewee.id }}">(continuar carga)</a>
+		  	    		{% endfor %}
+		    		</ul>
+		    		</div>  		
+		  			{% endif %}
+				{% endif %}
+			</div>
 		{% endif %}
-	</div>
 	</div>	
 	{% endif %}	
-		{% if not user.is_authenticated %}
-		<div class="login-encuesta">
-		<div class="survey-description">	
-				<br><br><br><br>			
-				<b>No está autenticado.</b><br>
-		</div>
-		</div>
-		{% endif %}	
+	{% if not user.is_authenticated %}
+	<div class="login-encuesta">
+	<div class="survey-description">	
+			<br><br><br><br>			
+			<b>No está autenticado.</b><br>
+	</div>
+	</div>
+	{% endif %}	
 {% endblock %}

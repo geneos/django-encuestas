@@ -8,7 +8,7 @@ media_url = settings.MEDIA_URL.lstrip('/').rstrip('/')
 
 urlpatterns = patterns('',	
 	url(r'^$', 'survey.views.Index', name='home'),
-	url(r'^survey/(\d+)/(\d+)/(\d+)/$', 'survey.views.SurveyDetail', name='surveydetail'),	
+	url(r'^survey/(\d+)/(\d+)/(\d+)/(\d)/(\d+)$', 'survey.views.SurveyDetail', name='surveydetail'),	
 	url(r'^confirm/(?P<uuid>\w+)/$', 'survey.views.Confirm', name='confirmation'),
 	url(r'^login/$', 'survey.views.login_page', name="login"),
     url(r'^logout/', 'django.contrib.auth.views.logout', {'next_page': '/'} , name="logout"),

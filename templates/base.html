@@ -15,7 +15,7 @@
   </head>
 
   <body>
-  	<div id="header">
+  	<div id="header" class="header">
 		{% if user.is_authenticated %}
 			<p>Gestión de Egresados. Bienvenido, <b>{{user.username}} | <a href="/logout/">Logout</a></b></p>
 			{% else %}

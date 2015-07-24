@@ -1,12 +1,14 @@
 #container-main {
 	padding-top: 60px;
 	padding-bottom: 40px;
+
 }
 
 p { }
 
 html, body {
 	height: 100%;
+	background-color: #FAAC58;
 	/* The html and body elements cannot have any padding or margin. */
 }
 
@@ -53,7 +55,7 @@ html, body {
 
 .footer {
 	padding: 30px;
-	background-color: #ffffff;
+	background-color: #FAAC58;
 }
 
 .hero-unit h1 {
@@ -189,7 +191,17 @@ img.profile-page-img {
 	padding-bottom: 1px;
 	padding-top: 1px;
 	text-align: center;
+	font-family: "Trebuchet MS", Helvetica, sans-serif
+	font-size:2;
+}
 
+.survey-titulo {
+	padding-bottom: 1px;
+	padding-top: 1px;
+	text-align: center;
+	font-family: "Trebuchet MS", Helvetica, sans-serif
+	font-size:2;
+	vertical-align: top;
 }
 
 .survey-right {
@@ -249,6 +261,7 @@ h3.collapsible:hover {
 
 .label-inline {
 	display: inline;
+	font-weight: bold;
 }
 
 #intro {
@@ -275,15 +288,24 @@ ol.survey-questions {
 
 .paginas-encuesta {	
 	position: fixed;
-    top: 30%;
+    top: 33%;
     left: 34%;
     width:60em;
     height:40em;
     margin-top: -9em; /*set to a negative number 1/2 of your height*/
     margin-left: -15em; /*set to a negative number 1/2 of your width*/
     border: 1px solid #ccc;
-    background-color: #f3f3f3;
+    background-color: #E6E6E6;
 	overflow-y: auto;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+}
+
+.header {
+	background-color: #FE9A2E;
+	padding: 10px;
+	text-align: right;
 }
 
 .login-encuesta {	
@@ -295,8 +317,12 @@ ol.survey-questions {
     margin-top: -9em; /*set to a negative number 1/2 of your height*/
     margin-left: -15em; /*set to a negative number 1/2 of your width*/
     border: 1px solid #ccc;
-    background-color: #f3f3f3;
+    background-color: #E6E6E6;
 	overflow-y: auto;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;	
+
 }
 
 .formularios-encuesta {	
@@ -308,11 +334,37 @@ ol.survey-questions {
     margin-top: -9em; /*set to a negative number 1/2 of your height*/
     margin-left: -15em; /*set to a negative number 1/2 of your width*/
     border: 1px solid #ccc;
-    background-color: #f3f3f3;
-	overflow-y: auto;
+    background-color: #E6E6E6;
+    overflow-y: auto;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+	text-align: center;	
+}
+
+.formularios-egresados {	
+	position: fixed;
+    top: 30%;
+    left: 45%;
+    width:35em;
+    height:40em;
+    margin-top: -9em; /*set to a negative number 1/2 of your height*/
+    margin-left: -15em; /*set to a negative number 1/2 of your width*/
+    border: 1px solid #ccc;
+    background-color: #E6E6E6;
+    overflow-y: auto;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+	text-align: center;	
 }
 
 .porcentaje {
 	text-align: right;
-	color: red;
+	color: red;	
+}
+
+.mensaje {
+	text-align: center;
+	color: red;	
 }

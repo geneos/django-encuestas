@@ -1,8 +1,21 @@
 {% extends 'base.html' %}
 
 {% block body %}
-
-Avance en la encuesta: 100%.
-Gracias por responder. 
-
+	{% if user.is_authenticated %}
+	<div class="formularios-encuesta">
+		<div class="survey-description">	
+			<br><br><br>					
+			<b>Avance en la encuesta: 100%</b><br>
+			Gracias por responder.<br>					
+		</div>
+	</div>
+	{% endif %}
+	{% if not user.is_authenticated %}
+		<div class="login-encuesta">
+		<div class="survey-description">	
+				<br><br><br><br>			
+				<b>No está autenticado.</b><br>
+		</div>
+		</div>
+	{% endif %}	
 {% endblock %}

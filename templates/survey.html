@@ -2,15 +2,15 @@
 {% load survey_extras %}
 
 {% block wrapper %}
-<div class="survey-description">
-	<b>{{survey.name|title}}</b> <br>
-	{{survey.description|safe}}
+<div class="survey-titulo">
+	<b>{{survey.name|title}}</b><br>
+	{{survey.description|safe}}<br>
 </div>
 {% endblock %}
 {% block body %} 
 <div class="paginas-encuesta">
 	{% for category in category_items %}
-	<form action="/survey/{{ response_id }}/{{ survey.id }}/{{ category.name }}/" method="post">{% csrf_token %}
+	<form action="/survey/{{ response_id }}/{{ survey.id }}/{{ category.name }}/{{ operador }}/{{ egresado_id }}" method="post">{% csrf_token %}
 		<ol class="survey-questions">
 			<div class="survey-description">				
 				<b>Pagina {{category|title}}: {{category.titulo}}</b><br><br>
