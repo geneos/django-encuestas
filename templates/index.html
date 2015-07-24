@@ -14,7 +14,7 @@
 							<b>Seleccione un egresado para cargar su encuesta</b>						
 							<select name="egresado_id" size="15">
 								{% for egresado in egresados_list %}
-				    				<option value="{{ egresado.id }}">{{ egresado.first_name }} {{ egresado.last_name }}</option>
+				    				<option value="{{ egresado.id }}">{{ egresado.last_name }} {{ egresado.first_name }}</option>
 								{% endfor %}
 							</select><br>
 							<b>Seleccione una encuesta a completar</b><br>					
