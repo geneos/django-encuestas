@@ -248,16 +248,14 @@ def SurveyDetail(request, response_id, id, p, operador, egresado_id):
 
 	#Reviso si es la ultima categoria para no mostrar Siguiente (mostrar "Finalizar")
 	ultima = False
-	ultimas_categorias = Pagina.objects.filter(survey=survey).order_by('-name')[:1]
+	ultimas_categorias = survey.categories()[:1] 
 	for ultima_categoria in ultimas_categorias:
 		if int(ultima_categoria.name) == int(p):
 			ultima = True
 	
 	
 	#Calcular porcentaje de llenado
-	#surveys_paginas_totales = survey.categories().order_by('-name')[:1]
-	import pdb
-	pdb.set_trace()
+	#surveys_paginas_totales = survey.categories().order_by('-name')[:1]	
 	surveys_paginas_totales = survey.categories()[:1]
 	for survey_paginas_totales in surveys_paginas_totales:		
 		porcentaje = (int(p)-1)*100/int(survey_paginas_totales.name)
