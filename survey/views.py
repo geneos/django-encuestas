@@ -253,11 +253,13 @@ def SurveyDetail(request, response_id, id, p, operador, egresado_id):
 		if int(ultima_categoria.name) == int(p):
 			ultima = True
 	
+	
 	#Calcular porcentaje de llenado
-	surveys_paginas_totales = survey.categories().order_by('-name')[:1]
-	for survey_paginas_totales in surveys_paginas_totales:
-		import pdb
-		pdb.set_trace()
+	#surveys_paginas_totales = survey.categories().order_by('-name')[:1]
+	import pdb
+	pdb.set_trace()
+	surveys_paginas_totales = survey.categories()[:1]
+	for survey_paginas_totales in surveys_paginas_totales:		
 		porcentaje = (int(p)-1)*100/int(survey_paginas_totales.name)
 
 	if formcorrecto:

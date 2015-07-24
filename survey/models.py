@@ -20,7 +20,8 @@ class Encuesta(models.Model):
 
 	def categories(self):
 		if self.pk:
-			return Pagina.objects.filter(survey=self.pk)
+			return Pagina.objects.extra(select={'intname': 'CAST(name AS INTEGER)'}).filter(survey=self.pk).order_by('-intname')
+			#return Pagina.objects.filter(survey=self.pk)
 		else:
 			return None
 
